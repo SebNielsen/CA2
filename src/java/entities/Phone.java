@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entities;
 
 import java.io.Serializable;
@@ -12,20 +7,20 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 /**
- *
  * @author sebastiannielsen
  */
 @Entity
 public class Phone implements Serializable {
-    @Id
+
+    @Id 
     private int number;
+
     private String description;
-    
-    @ManyToOne(fetch=FetchType.LAZY)
-    private InfoEntity owner;
-    
-    public Phone(){
-        
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private InfoEntity infoEntity; 
+
+    public Phone() {
     }
 
     public Phone(int number, String description) {
@@ -48,6 +43,4 @@ public class Phone implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
 }

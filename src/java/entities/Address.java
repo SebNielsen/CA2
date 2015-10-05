@@ -1,6 +1,5 @@
 package entities;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,20 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
  * @author sebastiannielsen
  */
 @Entity
 public class Address implements Serializable {
-    @Id
+    
+    @Id 
     private String street;
+    
     private String additionalInfo;
     
     @OneToMany(mappedBy="address")
@@ -33,7 +27,6 @@ public class Address implements Serializable {
     private CityInfo city;
     
     public Address(){
-        
     }
 
     public Address(String street, String additionalInfo) {
@@ -68,7 +61,4 @@ public class Address implements Serializable {
     public void setCity(CityInfo city) {
         this.city = city;
     }
-    
-    
-
 }

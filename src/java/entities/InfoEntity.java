@@ -28,16 +28,16 @@ public class InfoEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    
     private String email;
     
-    @OneToMany(mappedBy="owner")
+    /*@OneToMany(mappedBy="infoEntity")*/
     private List<Phone> phones = new ArrayList();
     
     @ManyToOne(fetch=FetchType.LAZY)
     private Address address;
     
     public InfoEntity(){
-        
     }
 
     public InfoEntity(long id, String email) {
@@ -76,7 +76,4 @@ public class InfoEntity implements Serializable {
     public void setAddress(Address address) {
         this.address = address;
     }
-    
-    
-    
 }

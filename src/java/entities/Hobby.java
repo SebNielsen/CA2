@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entities;
 
 import java.io.Serializable;
@@ -13,21 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 /**
- *
  * @author sebastiannielsen
  */
 @Entity
 public class Hobby implements Serializable {
-    
-    @Id
+
+    @Id 
     private String name;
+    
     private String description;
-    
-    @ManyToMany(mappedBy="hobbies")
+
+    @ManyToMany(mappedBy = "hobbies")
     private List<Person> persons = new ArrayList();
-    
-    public Hobby(){
-        
+
+    public Hobby() {
     }
 
     public Hobby(String name, String description) {
@@ -50,14 +44,12 @@ public class Hobby implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    public void addPerson(Person p){
+
+    public void addPerson(Person p) {
         persons.add(p);
     }
-    
-    public List<Person> getPersons(){
+
+    public List<Person> getPersons() {
         return persons;
     }
-    
-    
 }
