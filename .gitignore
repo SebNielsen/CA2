@@ -1,6 +1,8 @@
 #---------
 #Netbeans
 #---------
+src/conf/
+web/WEB-INF/
 nbproject/private/
 build/
 nbbuild/

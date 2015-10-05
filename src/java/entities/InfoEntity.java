@@ -31,7 +31,7 @@ public class InfoEntity implements Serializable {
     
     private String email;
     
-    /*@OneToMany(mappedBy="infoEntity")*/
+    @OneToMany(mappedBy="infoEntity")
     private List<Phone> phones = new ArrayList();
     
     @ManyToOne(fetch=FetchType.LAZY)
