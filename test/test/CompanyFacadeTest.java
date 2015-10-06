@@ -6,17 +6,11 @@
 package test;
 
 import entities.Company;
-import entities.Person;
 import exception.CompanyNotFoundException;
-import exceptions.PersonNotFoundException;
 import facade.CompanyFacade;
-import facade.ICompanyFacade;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -44,10 +38,6 @@ public class CompanyFacadeTest {
         } finally {
             em.close();
         }
-    }
-
-    @After
-    public void tearDown() {
     }
 
     @Test
