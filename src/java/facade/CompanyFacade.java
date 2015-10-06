@@ -10,6 +10,7 @@ import exception.CompanyNotFoundException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
 /**
  *
@@ -43,7 +44,8 @@ public class CompanyFacade implements ICompanyFacade {
     public Company getCompany(long cvr) throws CompanyNotFoundException {
         EntityManager em = getEntityManager();
         try {
-            Company c = em.find(Company.class, cvr);
+            Query query = em.createQuery("SELECT c FROM Company c WHERE c.cvr=:cvr").setParameter("cvr", cvr);
+            Company c = (Company) query.getSingleResult();
             if (c == null) {
                 throw new CompanyNotFoundException("No Company found with provided cvr");
             }
@@ -67,7 +69,8 @@ public class CompanyFacade implements ICompanyFacade {
     public void editCompany(Company c) throws CompanyNotFoundException {
         EntityManager em = getEntityManager();
         try {
-            Company edited = em.find(Company.class, c.getCvr());
+            Query query = em.createQuery("SELECT c FROM Company c WHERE c.cvr=:cvr").setParameter("cvr", c.getCvr());
+            Company edited = (Company) query.getSingleResult();
             if (edited == null) {
                 throw new CompanyNotFoundException("No Company found with provided cvr");
             }
@@ -90,7 +93,8 @@ public class CompanyFacade implements ICompanyFacade {
     public void deleteCompany(long cvr) throws CompanyNotFoundException {
         EntityManager em = getEntityManager();
         try {
-            Company c = em.find(Company.class, cvr);
+            Query query = em.createQuery("SELECT c FROM Company c WHERE c.cvr=:cvr").setParameter("cvr", cvr);
+            Company c = (Company) query.getSingleResult();
             if (c == null) {
                 throw new CompanyNotFoundException("No Company found with provided cvr");
             }
