@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 public class Phone implements Serializable {
 
     @Id 
-    private int number;
+    private Long number;
 
     private String description;
 
@@ -23,16 +23,16 @@ public class Phone implements Serializable {
     public Phone() {
     }
 
-    public Phone(int number, String description) {
+    public Phone(Long number, String description) {
         this.number = number;
         this.description = description;
     }
 
-    public int getNumber() {
+    public Long getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Long number) {
         this.number = number;
     }
 
