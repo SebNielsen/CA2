@@ -22,22 +22,22 @@ import javax.persistence.OneToMany;
  * @author sebastiannielsen
  */
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class InfoEntity implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String email;
-    
-    @OneToMany(mappedBy="owner")
+
+    @OneToMany(mappedBy = "owner")
     private List<Phone> phones = new ArrayList();
-    
-    @ManyToOne(fetch=FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private Address address;
-    
-    public InfoEntity(){
-        
+
+    public InfoEntity() {
+
     }
 
     public InfoEntity(long id, String email) {
@@ -65,6 +65,10 @@ public class InfoEntity implements Serializable {
         return phones;
     }
 
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
+    }
+
     public void addPhone(Phone phone) {
         phones.add(phone);
     }
@@ -76,7 +80,5 @@ public class InfoEntity implements Serializable {
     public void setAddress(Address address) {
         this.address = address;
     }
-    
-    
-    
+
 }

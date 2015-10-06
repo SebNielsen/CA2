@@ -23,7 +23,7 @@ public class Tester {
     }
     
     public static void test(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2_dev");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2PU");
         EntityManager em = emf.createEntityManager();
         
         Hobby hobby = new Hobby("Programming", "Software Development");
