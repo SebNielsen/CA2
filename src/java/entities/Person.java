@@ -1,17 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
 /**
- *
  * @author sebastiannielsen
  */
 @Entity
@@ -20,11 +15,10 @@ public class Person extends InfoEntity {
     private String firstName;
     private String lastName;
     
-    @ManyToMany
+    @ManyToMany (cascade = {CascadeType.DETACH, CascadeType.PERSIST})
     private List<Hobby> hobbies = new ArrayList();
     
     public Person(){
-        
     }
 
     public Person(String firstName, String lastName) {
@@ -55,7 +49,10 @@ public class Person extends InfoEntity {
     public List<Hobby> getHobbies(){
         return hobbies;
     }
-    
+
+    public void setHobbies(List<Hobby> hobbies) {
+        this.hobbies = hobbies;
+    }
     
     
 }

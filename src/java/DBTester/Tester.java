@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DBTester;
 
 import entities.Address;
@@ -16,13 +11,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
  * @author sebastiannielsen
  */
 public class Tester {
     
     public Tester(){
-        
     }
     
     public static void main(String[] args) {
@@ -30,7 +23,7 @@ public class Tester {
     }
     
     public static void test(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2PU");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2_dev");
         EntityManager em = emf.createEntityManager();
         
         Hobby hobby = new Hobby("Programming", "Software Development");
@@ -48,14 +41,7 @@ public class Tester {
         Company company = new Company();
         
         em.getTransaction().begin();
-        em.persist(hobby);
-        em.persist(phone);
-        em.persist(address);
-        em.persist(cityinfo);
         em.persist(person);
-        em.persist(company);
         em.getTransaction().commit();
-        
     }
-    
 }
