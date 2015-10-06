@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class Address implements Serializable {
     @OneToMany(mappedBy="address")
     private List<InfoEntity> infoEntities = new ArrayList();
     
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.PERSIST})
     private CityInfo city;
     
     public Address(){
@@ -33,6 +34,12 @@ public class Address implements Serializable {
         this.street = street;
         this.additionalInfo = additionalInfo;
     }
+
+    public void setInfoEntities(List<InfoEntity> infoEntities) {
+        this.infoEntities = infoEntities;
+    }
+    
+    
 
     public String getStreet() {
         return street;

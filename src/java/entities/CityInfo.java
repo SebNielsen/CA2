@@ -43,6 +43,16 @@ public class CityInfo implements Serializable {
     public void setCity(String city) {
         this.city = city;
     }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+    
+    
     
     
     

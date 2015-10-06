@@ -41,14 +41,7 @@ public class Tester {
         Company company = new Company();
         
         em.getTransaction().begin();
-        em.persist(hobby);
-        em.persist(phone);
-        em.persist(address);
-        em.persist(cityinfo);
         em.persist(person);
-        em.persist(company);
         em.getTransaction().commit();
-        
     }
-    
 }
