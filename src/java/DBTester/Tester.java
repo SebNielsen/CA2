@@ -6,6 +6,8 @@ import entities.Company;
 import entities.Hobby;
 import entities.Person;
 import entities.Phone;
+import facade.PersonFacade;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -43,5 +45,9 @@ public class Tester {
         em.getTransaction().begin();
         em.persist(person);
         em.getTransaction().commit();
+        
+        PersonFacade facade = new PersonFacade();
+        List<Person> personList = facade.getPersonsInCity(cityinfo);
+        System.out.println(personList.get(0).getHobbies().get(0).getDescription());
     }
 }
