@@ -4,7 +4,6 @@ import entities.CityInfo;
 import entities.Company;
 import entities.Hobby;
 import entities.Person;
-import entities.Phone;
 import exceptions.PersonNotFoundException;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -36,12 +35,11 @@ public class PersonFacade implements IPersonFacade {
     }
 
     @Override
-    public Person getPerson(Person person) throws PersonNotFoundException {
+    public Person getPerson(String phone) throws PersonNotFoundException {
         EntityManager em = getEntityManager();
         try {
-            Person p = em.find(Person.class, person.getPhones().get(0));
-//            Query query = em.createQuery("SELECT p FROM Person p WHERE p.phones=:phones").setParameter("phones", person.getPhones());
-//            Person p = (Person) query.getSingleResult();
+            Query query = em.createQuery("SELECT p FROM Person p WHERE :phone MEMBER OF p.phones").setParameter("phone", phone);
+            Person p = (Person) query.getSingleResult();
             if (p == null) {
                 throw new PersonNotFoundException("No person with that phone number found!");
             }
@@ -52,11 +50,12 @@ public class PersonFacade implements IPersonFacade {
     }
 
     @Override
-    public void editPerson(Person person) throws PersonNotFoundException {
+    public void editPerson(Person person, String phone) throws PersonNotFoundException {
         EntityManager em = getEntityManager();
         try {
-            Person edited = em.find(Person.class, 1L);
-           
+//            Person edited = em.find(Person.class, person.getPhones().get(0));
+            Query query = em.createQuery("SELECT p FROM Person p WHERE :phone MEMBER OF p.phones").setParameter("phone", phone);
+            Person edited = (Person) query.getSingleResult();
             if (edited == null) {
                 throw new PersonNotFoundException("Requested person not found!");
             }
@@ -95,7 +94,7 @@ public class PersonFacade implements IPersonFacade {
     public List<Person> getPersonsWithHobby(Hobby hobby) throws PersonNotFoundException {
         EntityManager em = getEntityManager();
         try {
-            Query query = em.createQuery("SELECT p FROM Person p WHERE p.hobbies.name=:hobby").setParameter("hobby", hobby);
+            Query query = em.createQuery("SELECT p FROM Person p WHERE :hobby MEMBER OF p.hobbies ").setParameter("hobby", hobby);
             List<Person> pList = query.getResultList();
             if (pList == null) {
                 throw new PersonNotFoundException("No persons found with that hobby!");
@@ -127,7 +126,7 @@ public class PersonFacade implements IPersonFacade {
     public Long getPersonCountWithHobby(Hobby hobby) {
         EntityManager em = getEntityManager();
         try {
-            Query query = em.createQuery("SELECT COUNT(p.id) FROM Person p WHERE p.hobbies.name=:hobby").setParameter("hobby", hobby);
+            Query query = em.createQuery("SELECT COUNT(p.id) FROM Person p WHERE :hobby MEMBER OF p.hobbies").setParameter("hobby", hobby);
             return (Long) query.getSingleResult();
         } finally {
             em.close();
@@ -150,7 +149,7 @@ public class PersonFacade implements IPersonFacade {
 
     public Company getCompany(Company company) {
         EntityManager em = getEntityManager();
-        Query query = em.createQuery("SELECT c FROM Company c WHERE c.cvr=:cvr OR c.phones=:phones").setParameter("cvr", company.getCvr()).setParameter("phones", company.getPhones());
+        Query query = em.createQuery("SELECT c FROM Company c WHERE c.cvr=:cvr OR :phones MEMBER OF c.phones").setParameter("cvr", company.getCvr()).setParameter("phones", company.getPhones());
         return (Company) query.getSingleResult();
     }
 }

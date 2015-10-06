@@ -8,7 +8,6 @@ package facade;
 import entities.CityInfo;
 import entities.Hobby;
 import entities.Person;
-import entities.Phone;
 import exceptions.PersonNotFoundException;
 import java.util.List;
 
@@ -20,9 +19,9 @@ public interface IPersonFacade {
 
     public void createPerson(Person person);
 
-    public Person getPerson(Person person) throws PersonNotFoundException;
+    public Person getPerson(String phone) throws PersonNotFoundException;
 
-    public void editPerson(Person person) throws PersonNotFoundException;
+    public void editPerson(Person person, String phone) throws PersonNotFoundException;
 
     public void deletePerson(Person person) throws PersonNotFoundException;
 
