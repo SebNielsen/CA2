@@ -1,5 +1,6 @@
 package facade;
 
+import deploy.DeploymentConfiguration;
 import entities.CityInfo;
 import entities.Company;
 import entities.Hobby;
@@ -13,7 +14,7 @@ import javax.persistence.Query;
 
 public class PersonFacade {
 
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2_dev");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
     EntityManager em = emf.createEntityManager();
 
     public Person getPerson(Phone phone) {

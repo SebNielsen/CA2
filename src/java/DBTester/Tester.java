@@ -1,5 +1,6 @@
 package DBTester;
 
+import deploy.DeploymentConfiguration;
 import entities.Address;
 import entities.CityInfo;
 import entities.Company;
@@ -11,6 +12,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
 /**
  * @author sebastiannielsen
@@ -25,11 +28,13 @@ public class Tester {
     }
     
     public static void test(){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2_dev");
+        
+        DeploymentConfiguration.setDevModeOn();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
         EntityManager em = emf.createEntityManager();
         
         Hobby hobby = new Hobby("Programming", "Software Development");
-        Phone phone = new Phone(51887460, "Mobil");
+        Phone phone = new Phone(29654310, "Mobil");
         Address address = new Address("Lombardigade", "14 1 tv");
         CityInfo cityinfo = new CityInfo(2300, "Kbh S");
         address.setCity(cityinfo);
