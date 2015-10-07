@@ -29,12 +29,13 @@ public class CompanyFacade implements ICompanyFacade {
     }
 
     @Override
-    public void createCompany(Company c) {
+    public Company createCompany(Company c) {
         EntityManager em = getEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(c);
             em.getTransaction().commit();
+            return c;
         } finally {
             em.close();
         }
@@ -66,7 +67,7 @@ public class CompanyFacade implements ICompanyFacade {
     }
 
     @Override
-    public void editCompany(Company c) throws CompanyNotFoundException {
+    public Company editCompany(Company c) throws CompanyNotFoundException {
         EntityManager em = getEntityManager();
         try {
             Query query = em.createQuery("SELECT c FROM Company c WHERE c.cvr=:cvr").setParameter("cvr", c.getCvr());
@@ -84,13 +85,14 @@ public class CompanyFacade implements ICompanyFacade {
             em.getTransaction().begin();
             em.merge(edited);
             em.getTransaction().commit();
+            return edited;
         } finally {
             em.close();
         }
     }
 
     @Override
-    public void deleteCompany(long cvr) throws CompanyNotFoundException {
+    public Company deleteCompany(long cvr) throws CompanyNotFoundException {
         EntityManager em = getEntityManager();
         try {
             Query query = em.createQuery("SELECT c FROM Company c WHERE c.cvr=:cvr").setParameter("cvr", cvr);
@@ -101,6 +103,7 @@ public class CompanyFacade implements ICompanyFacade {
             em.getTransaction().begin();
             em.remove(c);
             em.getTransaction().commit();
+            return c;
         } finally {
             em.close();
         }

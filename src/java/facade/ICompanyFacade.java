@@ -16,10 +16,10 @@ import java.util.List;
  */
 public interface ICompanyFacade {
     
-    void createCompany(Company c);
+    Company createCompany(Company c);
     Company getCompany(long cvr) throws CompanyNotFoundException; 
     List<Company> getCompanies(); 
-    void editCompany(Company c) throws CompanyNotFoundException;
-    void deleteCompany(long cvr) throws CompanyNotFoundException;
+    Company editCompany(Company c) throws CompanyNotFoundException;
+    Company deleteCompany(long cvr) throws CompanyNotFoundException;
     
 }
