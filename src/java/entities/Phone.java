@@ -51,8 +51,4 @@ public class Phone implements Serializable {
     public void setInfoEntity(InfoEntity infoEntity) {
         this.infoEntity = infoEntity;
     }
-    
-    
-    
-    
 }

@@ -1,5 +1,6 @@
 package facade;
 
+import deploy.DeploymentConfiguration;
 import entities.CityInfo;
 import entities.Company;
 import entities.Hobby;
@@ -8,6 +9,7 @@ import exceptions.PersonNotFoundException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 public class PersonFacade implements IPersonFacade {

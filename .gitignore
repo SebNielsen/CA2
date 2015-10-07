@@ -2,6 +2,7 @@
 #Netbeans
 #---------
 src/conf/
+web/META-INF/
 web/WEB-INF/
 nbproject/private/
 build/
