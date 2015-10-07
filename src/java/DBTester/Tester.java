@@ -32,6 +32,8 @@ public class Tester {
         DeploymentConfiguration.setDevModeOn();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME);
         EntityManager em = emf.createEntityManager();
+        
+//        Persistence.generateSchema("pu_test", null);
 //        
 //        Hobby hobby = new Hobby("Programming", "Software Development");
 //        Phone phone = new Phone(29654310, "Mobil");
