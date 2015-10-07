@@ -4,7 +4,7 @@
 src/conf/
 web/META-INF/
 web/WEB-INF/
-nbproject/
+nbproject/private/
 build/
 nbbuild/
 dist/
