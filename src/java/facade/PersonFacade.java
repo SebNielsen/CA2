@@ -22,6 +22,10 @@ public class PersonFacade implements IPersonFacade {
         return emf.createEntityManager();
     }
 
+    /**
+     * Create a person, returns nothing.
+     * @param person 
+     */
     @Override
     public void createPerson(Person person) {
         EntityManager em = getEntityManager();
@@ -34,6 +38,12 @@ public class PersonFacade implements IPersonFacade {
         }
     }
 
+    /**
+     * Find a person using a phone number. 
+     * @param phone
+     * @return Person
+     * @throws PersonNotFoundException 
+     */
     @Override
     public Person getPerson(String phone) throws PersonNotFoundException {
         EntityManager em = getEntityManager();
@@ -49,11 +59,16 @@ public class PersonFacade implements IPersonFacade {
         }
     }
 
+    /**
+     * Edit a person, returns nothing
+     * @param person
+     * @param phone
+     * @throws PersonNotFoundException 
+     */
     @Override
     public void editPerson(Person person, String phone) throws PersonNotFoundException {
         EntityManager em = getEntityManager();
         try {
-//            Person edited = em.find(Person.class, person.getPhones().get(0));
             Query query = em.createQuery("SELECT p FROM Person p WHERE :phone MEMBER OF p.phones").setParameter("phone", phone);
             Person edited = (Person) query.getSingleResult();
             if (edited == null) {
@@ -73,6 +88,11 @@ public class PersonFacade implements IPersonFacade {
 
     }
 
+    /**
+     * 
+     * @param person
+     * @throws PersonNotFoundException 
+     */
     @Override
     public void deletePerson(Person person) throws PersonNotFoundException {
         EntityManager em = getEntityManager();

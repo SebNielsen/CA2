@@ -89,7 +89,7 @@ public class PersonFacadeTest {
     public void tearDown() {
     }
 
-//    @Test
+    @Test
     public void testCreatePerson() throws PersonNotFoundException {
         Hobby hobby = new Hobby("Programming3", "Software Development");
         Phone phone = new Phone("12345678", "Mobil");

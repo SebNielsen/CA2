@@ -23,6 +23,8 @@ public class ApplicationConfig extends Application {
         resources.add(exception.NotFoundExceptionMapper.class);
         resources.add(exceptions.PersonNotFoundExceptionMapper.class);
         resources.add(rest.RestService.class);
+        resources.add(rest.RestServiceCompany.class);
+        resources.add(rest.RestServicePerrson.class);
     }
     
 }
