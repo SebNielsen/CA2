@@ -5,6 +5,7 @@
  */
 package facade;
 
+import entities.CityInfo;
 import entities.Company;
 import exception.CompanyNotFoundException;
 import java.util.List;
@@ -64,6 +65,39 @@ public class CompanyFacade implements ICompanyFacade {
         } finally {
             em.close();
         }
+    }
+    
+    @Override
+    public List<Company> getCompaniesInCity(CityInfo city) throws CompanyNotFoundException {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery("SELECT c FROM Company c WHERE c.address.city=:city").setParameter("city", city);
+            List<Company> cList = query.getResultList();
+            if (cList == null) {
+                throw new CompanyNotFoundException("No companies found in that city!");
+            }
+            return cList;
+
+        } finally {
+            em.close();
+        }
+    }
+    
+    @Override
+    public List<Company> getCompaniesWithEmployeeCount(Long empCount) throws CompanyNotFoundException {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery("SELECT c FROM Company c WHERE c.NumEmployees > :empCount").setParameter("empCount", empCount);
+            List<Company> cList = query.getResultList();
+            if (cList == null) {
+                throw new CompanyNotFoundException("No companies found with more than " + empCount + "employees");
+            }
+            return cList;
+
+        } finally {
+            em.close();
+        }
+        
     }
 
     @Override
